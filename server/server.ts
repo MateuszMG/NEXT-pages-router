@@ -9,6 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use("/images", express.static("public/images"));
+
 app.use("/", (req, res, next) => {
   console.log("/");
   next();

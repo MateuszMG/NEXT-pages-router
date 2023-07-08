@@ -1,7 +1,13 @@
 import Link from "next/link";
 import styles from "./Navigation.module.css";
 
-const path = ["/todos", "/todos/todo/5", "/todos/addTodo", "/todos/editTodo"];
+const path = [
+  "/todos",
+  "/todos/todo/5",
+  "/todos/addTodo",
+  "/todos/editTodo",
+  "/photo",
+];
 
 export const Navigation = () => {
   return (
