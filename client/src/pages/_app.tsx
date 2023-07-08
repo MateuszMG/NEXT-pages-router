@@ -1,9 +1,11 @@
 import { Navigation } from "@/components/Navigation/Navigation";
 import "@/styles/globals.css";
-import type { AppProps } from "next/app";
+import type { AppProps, NextWebVitalsMetric } from "next/app";
 import Head from "next/head";
 import { Roboto } from "next/font/google";
 import Script from "next/script";
+import dynamic from "next/dynamic";
+import { axios } from "@/api/axiosInstance";
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -11,6 +13,10 @@ const roboto = Roboto({
   subsets: ["latin"],
   display: "swap",
 });
+
+const DynamicNavigation = dynamic(() =>
+  import("../components/Navigation/Navigation").then((mod) => mod.Navigation)
+);
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -29,7 +35,8 @@ export default function App({ Component, pageProps }: AppProps) {
         `}</style> */}
       </Head>
       <div className={roboto.className}>
-        <Navigation />
+        {/* <Navigation /> */}
+        <DynamicNavigation />
         <Component {...pageProps} />
         {/* <Script
           src="../utils/script.js"
@@ -42,3 +49,15 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+// export function reportWebVitals(metric: NextWebVitalsMetric) {
+//   const body = JSON.stringify(metric);
+//   const url = "http://localhost:4001/analytics";
+
+//   if (navigator.sendBeacon) {
+//     navigator.sendBeacon(url, body);
+//   } else {
+//     fetch(url, { body, method: "POST", keepalive: true });
+//   }
+//   // axios.post("/analytics", body);
+// }

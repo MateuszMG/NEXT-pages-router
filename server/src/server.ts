@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import { todoRouter } from "./routes/api/todo";
+import { analyticRouter } from "./routes/api/analytic";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use("/", (req, res, next) => {
   next();
 });
 
+app.use(analyticRouter);
 app.use(todoRouter);
 
 app.listen(4001, () => {
