@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { Roboto } from "next/font/google";
+import Script from "next/script";
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -30,6 +31,13 @@ export default function App({ Component, pageProps }: AppProps) {
       <div className={roboto.className}>
         <Navigation />
         <Component {...pageProps} />
+        {/* <Script
+          src="../utils/script.js"
+          onLoad={() => {
+            console.log("Script has loaded");
+          }}
+        /> */}
+        {/* <Script>{`console.log("loaded");`}</Script> */}
       </div>
     </>
   );
